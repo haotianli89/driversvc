@@ -16,7 +16,7 @@ type Driversvc struct {
 
 
 func getDrivers() ([]*driversvc.Driver, error) {
-	cluster := gocql.NewCluster("127.0.0.1")
+	cluster := gocql.NewCluster("172.17.0.2")
 	cluster.Keyspace = "driverdb"
 	cluster.Consistency = gocql.One
 	session, _ := cluster.CreateSession()
