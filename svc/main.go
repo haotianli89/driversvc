@@ -7,12 +7,53 @@ import (
 	"fmt"
 	"github.com/gocql/gocql"
 	"log"
+	"github.com/uber-go/dosa"
+	_ "github.com/uber-go/dosa/connectors/cassandra"
 )
+
+
+type Driver struct {
+	dosa.Entity `dosa:"primaryKey=Id"`
+	Id     dosa.UUID
+	Name   string
+	//Trips  []string
+}
 
 
 type Driversvc struct {
 
 }
+
+
+//func getDrivers() ([]*driversvc.Driver, error) {
+//	registry, err := dosa.NewRegistrar("driverdb", "driversvc", &Driver{})
+//	if err != nil {
+//		panic(err.Error())
+//	}
+//
+//	connector, err := dosa.GetConnector("cassandra", nil)
+//	if err != nil {
+//		panic(err.Error())
+//	}
+//
+//	client := dosa.NewClient(registry, connector)
+//	if err := client.Initialize(context.TODO()); err != nil {
+//		panic(err.Error())
+//	}
+//
+//	var drivers []*driversvc.Driver
+//	var object dosa.DomainObject
+//	fields := []string{"id", "name"}
+//
+//	if _, err := client.MultiRead(context.TODO(), fields, object); err != nil {
+//		panic(err.Error())
+//	}
+//
+//
+//	fmt.Println("object:", object)
+//
+//	return drivers, nil
+//}
 
 
 func getDrivers() ([]*driversvc.Driver, error) {
